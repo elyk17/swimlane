@@ -1,0 +1,46 @@
+import welcome from '../../page_objects/welcome_page'
+import profile from '../../page_objects/profile_page'
+
+describe('Functional Test', () => {
+    beforeEach(function() {
+        cy.login()
+    })
+    it('edit authorization test', () => {
+        cy.url('eq', 'https://qa-practical.qa.swimlane.io/welcome')
+        welcome.edit_profile().should('be.visible').click({force: true})
+        cy.url('eq', 'https://qa-practical.qa.swimlane.io/user/a3RsOXUQCP0jrJDQc')
+        cy.wait(1000)
+        profile.authentication_header().should('be.visible').click({force: true})
+        profile.two_factor_authentication().contains('Two-Factor Authentication (Disabled)')
+        profile.enable_2fa().should('be.visible').click({force: true})
+        profile.mfa_modal().should('exist')
+        profile.notice_message().should('be.visible')
+        profile.message_1().should('be.visible')
+        profile.message_2().should("be.visible")
+        profile.message_3().should('be.visible')
+       profile.qr_code().should('be.visible')
+        
+       //test authentication code fields
+       profile.mfa_code_1().clear({force: true}).type('a').should('have.value', '')
+       profile.mfa_code_1().clear({force:true}).type('@').should('have.value', '')
+       profile.mfa_code_1().clear({force: true}).type('1').should('have.value', '1')
+       profile.mfa_code_2().clear({force: true}).type('b').should('have.value', '')
+       profile.mfa_code_2().clear({force:true}).type('!').should('have.value', '')
+       profile.mfa_code_2().clear({force: true}).type('0').should('have.value', '0')
+       profile.mfa_code_3().clear({force: true}).type('c').should('have.value', '')
+       profile.mfa_code_3().clear({force:true}).type('#').should('have.value', '')
+       profile.mfa_code_3().clear({force: true}).type('2').should('have.value', '2')
+       profile.mfa_code_4().clear({force: true}).type('d').should('have.value', '')
+       profile.mfa_code_4().clear({force:true}).type('$').should('have.value', '')
+       profile.mfa_code_4().clear({force: true}).type('3').should('have.value', '3')
+       profile.mfa_code_5().clear({force: true}).type('e').should('have.value', '')
+       profile.mfa_code_5().clear({force:true}).type('%').should('have.value', '')
+       profile.mfa_code_5().clear({force: true}).type('4').should('have.value', '4')
+       profile.mfa_code_6().clear({force: true}).type('f').should('have.value', '')
+       profile.mfa_code_6().clear({force:true}).type('&').should('have.value', '')
+       profile.mfa_code_6().clear({force: true}).type('6')
+       profile.invalid_mfa_error().should('be.visible')
+       profile.close_2FA().click({force: true})
+       profile.mfa_modal().should('not.exist')
+    })
+})

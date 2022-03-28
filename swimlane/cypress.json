@@ -1,0 +1,8 @@
+{
+    "env":{
+        "baseUrl": "https://qa-practical.qa.swimlane.io/login",
+        "username" : "kyle.martinez",
+        "password" : "WYLPNiBkYpqg7h"
+    },
+        "chromeWebSecurity": false
+}

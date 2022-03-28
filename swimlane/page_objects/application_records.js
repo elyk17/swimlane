@@ -1,0 +1,26 @@
+
+export default{
+    filter_bar: () => cy.get('[class="filter-bar"]', {timeout: 10000}).find('div', {tiemout: 10000}),
+    charts: () => cy.get('toolbar', {timeout: 10000}).find('ul', {timeout: 10000}).find('li', {timeout: 10000}).eq(0).find('button', {timeout: 10000}),
+    import: () => cy.get('toolbar', {timeout: 10000}).find('ul', {timeout: 10000}).find('li', {timeout: 10000}).eq(1).find('button', {timeout: 10000}),
+    row: (row = {}) => cy.get('[tabindex="'+row+'"]', {timeout: 10000}),
+    row_button: (row = {}) => cy.get('[tabindex="'+row+'"]', {timeout: 10000}).find('div', {timeout: 10000}).find('[class="dt-cell"]', {timeout: 10000}),
+    city: (name = {}) => cy.get('[data-title="City"]', {timeout: 10000}).contains(name),
+    row_button_by_city: (name = {}) => cy.get('[data-title="City"]', {timeout: 10000}).contains(name).parent().parent(),
+    department: () => cy.get('[data-title="Department"]', {timeout: 10000}),
+    email: () => cy.get('[data-title="Email"]', {timeout: 10000}),
+    first_name: () => cy.get('[data-title="First Name"]', {timeout: 10000}),
+    last_name: () => cy.get('[data-title="Last Name"]', {timeout: 10000}),
+    state: () => cy.get('[data-title="State"]', {timeout: 10000}),
+    status: () => cy.get('[data-title="Status"]', {timeout: 10000}),
+    street_name: () => cy.get('[data-title="Street Address"]', {timeout: 10000}),
+    telephone: () => cy.get('[data-title="Telephone"]', {timeout: 10000}),
+    text: () => cy.get('[data-title="Text"]', {timeout: 10000}),
+    total_time_spent: () => cy.get('[data-title="Total Time Spent"]', {timeout: 10000}),
+    zip_code: () => cy.get('[data-title="Zip"]', {timeout: 10000}),
+    tracking_id: () => cy.get('[data-title="Tracking Id"]', {timeout: 10000}),
+    add_remove_columns: () => cy.get('[class="column-select-trigger column-dropdown dropdown"]', {timeout: 10000}),
+    filter_columns: () => cy.get('[class="column-keywords"]', {timeout: 10000}),
+    benefits_checkbox: () => cy.get('[ng-repeat="column in colCtrl.model | filter:colCtrl.columnKeyword"]', {timeout: 10000}).find('label', {timeout: 10000}).find('span', {timeout: 10000}).eq(1).contains('Benefits'),
+
+}   
